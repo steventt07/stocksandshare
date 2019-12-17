@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.deploySubpath": "",
+    "appService.defaultWebAppToDeploy": "/subscriptions/f166b59a-013b-4201-9ac4-7a8168c0ec10/resourceGroups/stocksandshare/providers/Microsoft.Web/sites/stocksandshare"
+}
