@@ -14,7 +14,7 @@ import MainPage from "./pages/index";
 import AboutPage from "./pages/about";
 import FeaturePage from "./pages/feature";
 import TraderPage from "./pages/trader";
-import NotFoundPage from "./pages/404";
+import NotFoundPage from "./pages/error/404";
 
 ReactDOM.render(
   <Router>

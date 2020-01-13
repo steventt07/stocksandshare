@@ -32,6 +32,9 @@ const FeaturePage = () => {
         <li>Create flask app for database interaction</li>
         <li>Integrate flask with react</li>
         <li>Create API spec for flask app</li>
+        <li>
+          Look into website caching to prevent from reloading data from API
+        </li>
       </ul>
       <p>What I've done for this website</p>
       <ul>
