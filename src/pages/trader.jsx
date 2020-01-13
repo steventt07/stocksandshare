@@ -1,16 +1,17 @@
 import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Body from "../components/Body";
 
-function MainPage() {
+const TraderPage = () => {
   return (
     <div>
       <Header />
-      <Body />
+      <h2>Traders</h2>
+      <h3>Steven Tran - Technical Analysis</h3>
+      <h3>Cheten - News/Momentum</h3>
       <Footer />
     </div>
   );
-}
+};
 
-export default MainPage;
+export default TraderPage;
