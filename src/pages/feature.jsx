@@ -32,6 +32,12 @@ const FeaturePage = () => {
         <li>Create flask app for database interaction</li>
         <li>Integrate flask with react</li>
         <li>Create API spec for flask app</li>
+        <li>Connect React app with local falcon server</li>
+        <li>Create forms that template stock upload</li>
+        <li>Linked up form with POST call in falcon</li>
+        <li>Display contents from GET call</li>
+        <li>Package everything in VM</li>
+        <li>Deploy Falcon server and Postgres database into production</li>
         <li>
           Look into website caching to prevent from reloading data from API
         </li>
@@ -45,6 +51,14 @@ const FeaturePage = () => {
         <li>Set up postgres server from Azure</li>
         <li>Added links in nav bar for nagivation</li>
         <li>Added Home, About, Feature, and Trader pages</li>
+        <li>Setup local postgre server</li>
+        <li>Setup local python falcon server</li>
+        <li>Connected postgres with falcon server</li>
+        <li>Uploaded image(binary) file to postgre</li>
+        <li>
+          Downloaded image(binary) from postgres and saved it into local
+          directory
+        </li>
         <li></li>
       </ul>
       <Footer />

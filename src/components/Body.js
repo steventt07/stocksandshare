@@ -5,6 +5,8 @@ function Body() {
   const friend1 = "Cameron Dekohary";
   const friend2 = "Alondra Torres";
   const friend3 = "Hanna Banana";
+  const friend4 = "Hi Bianca";
+  const friend5 = "Hi Payton Unger";
   return (
     <body>
       <StockNote
@@ -47,6 +49,8 @@ function Body() {
       <p>Hi {friend1}</p>
       <p>Hi {friend2}</p>
       <p>Hi {friend3}</p>
+      <p>Hi {friend4}</p>
+      <p>Hi {friend5}</p>
     </body>
   );
 }
