@@ -8,7 +8,7 @@ function Body() {
   const friend4 = "Hi Bianca";
   const friend5 = "Hi Payton Unger";
   return (
-    <body>
+    <div>
       <StockNote
         name="AMD"
         imgUrl="amd.png"
@@ -51,7 +51,7 @@ function Body() {
       <p>Hi {friend3}</p>
       <p>Hi {friend4}</p>
       <p>Hi {friend5}</p>
-    </body>
+    </div>
   );
 }
 
