@@ -8,7 +8,7 @@ import { Container } from "semantic-ui-react";
 const LearnPage = () => {
   const [charts, setCharts] = useState([]);
   useEffect(() => {
-    fetch("/charts").then(response =>
+    fetch("http://127.0.0.1:8000/charts").then(response =>
       response.json().then(data => {
         setCharts(data.charts);
       })
