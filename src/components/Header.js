@@ -4,14 +4,25 @@ import { Link, withRouter } from "react-router-dom";
 
 function Header() {
   let styles = {
-    color: "#FFFFFF"
+    "text-decoration": "none",
+    color: "#FFFFFF",
+    padding: "5px"
+    // "margin-left": "10px"
   };
-  let styles1 = {
-    "text-align": "right"
+  let home_styles = {
+    "text-decoration": "none",
+    color: "#FFFFFF",
+    padding: "0",
+    "padding-right": "35%",
+    "margin-left": "10px"
+
+    // "margin-left": "10px"
   };
   return (
     <header className="navbar">
-      <h3>Stocks and Share</h3>
+      <Link style={home_styles} to="/">
+        Stocks and Share
+      </Link>
       <Link style={styles} to="/about">
         About
       </Link>
@@ -21,9 +32,9 @@ function Header() {
       <Link style={styles} to="/trader">
         Trader
       </Link>
-      <Link style={styles} to="/">
-        Home
-      </Link>
+      {/* <Link style={styles} to="/learn">
+        Learn
+      </Link> */}
     </header>
   );
 }
