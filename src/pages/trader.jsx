@@ -4,7 +4,7 @@ import Header from "../components/Header";
 
 const TraderPage = () => {
   return (
-    <div>
+    <div class="container">
       <Header />
       <h2>Traders</h2>
       <h3>Steven Tran - Technical Analysis</h3>

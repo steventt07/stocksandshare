@@ -8,7 +8,7 @@ import { Container } from "semantic-ui-react";
 const LearnPage = () => {
   const [charts, setCharts] = useState([]);
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/charts").then(response =>
+    fetch("/charts").then(response =>
       response.json().then(data => {
         setCharts(data.charts);
       })
@@ -16,14 +16,11 @@ const LearnPage = () => {
   }, []);
 
   return (
-    <div>
+    <div class="container">
       <Header />
       <h2>Learn Page</h2>
-      <Container>
-        <ChartForm />
-        <Charts charts={charts} />
-        <p>Coming Soon</p>
-      </Container>
+      <ChartForm />
+      <Charts charts={charts} />
       <Footer />
     </div>
   );

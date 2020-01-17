@@ -1,28 +1,59 @@
 import React, { useState } from "react";
-
-import { Form, Input, Button } from "semantic-ui-react";
+//axios
+import { Form, Input, Button, Label, Icon } from "semantic-ui-react";
 export const ChartForm = () => {
   const [image, setImage] = useState("");
   const [note, setNote] = useState("");
   const [symbol, setSymbol] = useState("");
+
+  const getBase64 = file => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result.split(",").pop());
+      reader.onerror = error => reject(error);
+    });
+  };
+  const clearText = () => {
+    document.getElementById("file-form").value = "";
+    document.getElementById("note-form").value = "";
+    document.getElementById("symbol-form").value = "";
+  };
+  function validateFields() {
+    if (
+      document.getElementById("file-form").value == "" ||
+      document.getElementById("file-form").value == "" ||
+      document.getElementById("file-form").value == ""
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   return (
     <Form>
       <Form.Field>
         <Input
-          placeholder="image"
-          value={image}
-          onChange={e => setImage(e.target.value)}
+          id="file-form"
+          type="file"
+          onChange={e =>
+            getBase64(e.target.files[0]).then(result => {
+              setImage(result);
+            })
+          }
         />
       </Form.Field>
       <Form.Field>
         <Input
-          placeholder="Note"
+          id="note-form"
+          placeholder="note"
           value={note}
           onChange={e => setNote(e.target.value)}
         />
       </Form.Field>
       <Form.Field>
         <Input
+          id="symbol-form"
           placeholder="stock symbol"
           value={symbol}
           onChange={e => setSymbol(e.target.value)}
@@ -31,20 +62,26 @@ export const ChartForm = () => {
       <Form.Field>
         <Button
           onClick={async () => {
-            const chart = { image, note, symbol };
-            const response = await fetch("http://127.0.0.1:8000/charts", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify(chart)
-            });
+            if (validateFields()) {
+              console.log(image, note, symbol);
+              const chart = { image, note, symbol };
+              const response = await fetch("/charts", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(chart)
+              });
 
-            if (response.ok) {
-              console.log("response worked!!");
-              setNote("");
-              setSymbol("");
-              setImage("");
+              if (response.ok) {
+                console.log("response worked!!");
+                setNote("");
+                setSymbol("");
+                setImage("");
+                clearText();
+              }
+            } else {
+              console.log("Invalid Form");
             }
           }}
         >

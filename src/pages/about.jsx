@@ -5,10 +5,10 @@ import "../index.css";
 
 const AboutPage = () => {
   return (
-    <div>
+    <div class="container">
       <Header />
       <h2>About Page</h2>
-      <div class="container">
+      <div>
         <div class="box-1">
           <h3>Motivation</h3>
           <p>
