@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import { Charts } from "../components/Charts";
-import { ChartForm } from "../components/ChartForm";
-import { Container } from "semantic-ui-react";
+import React, { useEffect, useState } from "../../node_modules/react";
+import { Header, Footer } from "../Components/Layouts";
+import { Charts, ChartForm } from "../Components";
 
-const LearnPage = () => {
+const Learn = () => {
   const [charts, setCharts] = useState([]);
   useEffect(() => {
-    fetch("/charts").then(response =>
+    fetch("http://localhost:8000/charts").then(response =>
       response.json().then(data => {
         setCharts(data.charts);
       })
@@ -16,7 +13,7 @@ const LearnPage = () => {
   }, []);
 
   return (
-    <div class="container">
+    <div className="container">
       <Header />
       <h2>Learn Page</h2>
       <ChartForm />
@@ -26,4 +23,4 @@ const LearnPage = () => {
   );
 };
 
-export default LearnPage;
+export default Learn;

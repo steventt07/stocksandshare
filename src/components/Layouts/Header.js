@@ -1,6 +1,6 @@
-import React from "react";
-import "../index.css";
-import { Link, withRouter } from "react-router-dom";
+import React from "../../../node_modules/react";
+import "../../index.css";
+import { Link } from "../../../node_modules/react-router-dom";
 
 function Header() {
   let styles = {

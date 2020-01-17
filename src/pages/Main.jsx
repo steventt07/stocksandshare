@@ -1,16 +1,16 @@
 import React from "../../node_modules/react";
+import "../index.css";
 import { Header, Footer } from "../Components/Layouts";
+import { Body } from "../Components";
 
-const Trader = () => {
+function Main() {
   return (
     <div className="container">
       <Header />
-      <h2>Traders</h2>
-      <h3>Steven Tran - Technical Analysis</h3>
-      <h3>Cheten - News/Momentum</h3>
+      <Body />
       <Footer />
     </div>
   );
-};
+}
 
-export default Trader;
+export default Main;

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from "../../node_modules/react";
+import { Form, Input, Button } from "../../node_modules/semantic-ui-react";
 //axios
-import { Form, Input, Button, Label, Icon } from "semantic-ui-react";
+
 export const ChartForm = () => {
   const [image, setImage] = useState("");
   const [note, setNote] = useState("");
@@ -21,9 +22,9 @@ export const ChartForm = () => {
   };
   function validateFields() {
     if (
-      document.getElementById("file-form").value == "" ||
-      document.getElementById("file-form").value == "" ||
-      document.getElementById("file-form").value == ""
+      document.getElementById("file-form").value === "" ||
+      document.getElementById("file-form").value === "" ||
+      document.getElementById("file-form").value === ""
     ) {
       return false;
     } else {
@@ -65,7 +66,7 @@ export const ChartForm = () => {
             if (validateFields()) {
               console.log(image, note, symbol);
               const chart = { image, note, symbol };
-              const response = await fetch("/charts", {
+              const response = await fetch("http://localhost:8000/charts", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"

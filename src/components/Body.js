@@ -1,71 +1,33 @@
-import React from "react";
+import React from "../../node_modules/react";
 import StockNote from "./StockNote";
+import { MainPageData } from "../Data";
 
 function Body() {
-  const friend1 = "Cameron Dekohary";
-  const friend2 = "Alondra Torres";
-  const friend3 = "Hanna Banana";
-  const friend4 = "Bianca";
-  const friend5 = "Payton Unger";
-  const friend6 = "Junior Sanchez";
+  const listComponent = List => {
+    return List.map(item => {
+      return <li>{item}</li>;
+    });
+  };
+  const sectionComponent = Object => {
+    return Object.map(item => {
+      return (
+        <div className="categories">
+          <h2>{item.title}</h2>
+          <ul>{listComponent(item.content)}</ul>
+        </div>
+      );
+    });
+  };
   return (
     <div>
-      <div class="categories">
+      <div className="categories">
         <StockNote
           name="AMD"
           note="The chart broke the channel, it looks like it's going to test the bottom trendline."
           imgUrl="amd.png"
         />
       </div>
-      <div class="categories">
-        <h2>Trade Checklist</h2>
-        <ul>
-          <li>Come up with more of a game plan in the trade </li>
-          <li>
-            Set alerts to support/resistance line and based your trade off of
-            that{" "}
-          </li>
-          <li>What kind of returns am I looking for this trade</li>
-          <li>What kind of loss am I willing to lose for this trade</li>
-          <li>How long am I planning on taking this trade </li>
-        </ul>
-      </div>
-      <div class="categories">
-        <h2>Mindset</h2>
-        <ul>
-          <li>
-            If you need to watch the price action of the stock, you shouldn’t be
-            in the position{" "}
-          </li>
-          <li>
-            If the price action goes past your support line, wait for the test
-            of the supportline and sell there
-          </li>
-          <li>
-            If the price action goes in your direction greater than expected,
-            take some profits and reduce your risk
-          </li>
-        </ul>
-      </div>
-      <div class="categories">
-        <h2>Stock Analysis Guideline</h2>
-        <ul>
-          <li>It should take 5-10 minutes to fully analyze a chart </li>
-          <li>Draw out support/resistance line </li>
-          <li>Draw out trendlines on the daily, 4 hour, and 15 minutes </li>
-        </ul>
-      </div>
-      <div class="categories">
-        <h2>Greetings</h2>
-        <ul>
-          <li>{friend1}</li>
-          <li>{friend2}</li>
-          <li>{friend3}</li>
-          <li>{friend4}</li>
-          <li>{friend5}</li>
-          <li>{friend6}</li>
-        </ul>
-      </div>
+      {sectionComponent(MainPageData)}
     </div>
   );
 }
