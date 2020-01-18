@@ -66,7 +66,7 @@ export const ChartForm = () => {
             if (validateFields()) {
               console.log(image, note, symbol);
               const chart = { image, note, symbol };
-              const response = await fetch("http://localhost:8000/charts", {
+              const response = await fetch("/charts", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"

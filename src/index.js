@@ -20,7 +20,6 @@ ReactDOM.render(
       <Route exact path="/trader" component={Trader} />
       <Route exact path="/learn" component={Learn} />
       <Route exact path="/404" component={NotFound} />
-      <Redirect to="/404" />
     </Switch>
   </Router>,
   document.getElementById("root")
