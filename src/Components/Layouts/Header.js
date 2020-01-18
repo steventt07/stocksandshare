@@ -1,6 +1,6 @@
-import React from "react";
-import "../index.css";
-import { Link, withRouter } from "react-router-dom";
+import React from "../../../node_modules/react";
+import "../../index.css";
+import { Link } from "../../../node_modules/react-router-dom";
 
 function Header() {
   let styles = {
@@ -13,7 +13,7 @@ function Header() {
     "text-decoration": "none",
     color: "#FFFFFF",
     padding: "0",
-    "padding-right": "35%",
+    "padding-right": "20%",
     "margin-left": "10px"
 
     // "margin-left": "10px"
@@ -32,9 +32,9 @@ function Header() {
       <Link style={styles} to="/trader">
         Trader
       </Link>
-      {/* <Link style={styles} to="/learn">
+      <Link style={styles} to="/learn">
         Learn
-      </Link> */}
+      </Link>
     </header>
   );
 }

@@ -1,15 +1,14 @@
-import React from "react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import React from "../../node_modules/react";
 import "../index.css";
+import { Header, Footer } from "../Components/Layouts";
 
-const AboutPage = () => {
+const About = () => {
   return (
-    <div>
+    <div className="container">
       <Header />
       <h2>About Page</h2>
-      <div class="container">
-        <div class="box-1">
+      <div>
+        <div className="box-1">
           <h3>Motivation</h3>
           <p>
             I'm creating this website as a way for traders to learn and teach
@@ -28,4 +27,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default About;

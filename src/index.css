@@ -7,6 +7,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+img {
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -29,6 +44,56 @@ code {
 }
 
 .box-1 {
-  padding: 20px;
-  margin: 20px 0;
+  border: 1px #ccc solid;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #55555;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  /* Same as above */
+  font: normal 16px Arial, Helvetica, sans-serif;
+
+  line-height: 1.6em;
+  margin: 0;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.categories {
+  border: 1px #ccc solid;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.categories h2 {
+  text-align: center;
+}
+
+.categories ul {
+  padding: 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.categories li {
+  padding-bottom: 6px;
+  border-bottom: dotted 1px #333;
+  /* list-style-image: url('../images/check.png') */
+}
+.file-uploader {
+  .ui.input {
+    display: none;
+  }
+  button.ui.button {
+    pointer-events: none;
+  }
 }
