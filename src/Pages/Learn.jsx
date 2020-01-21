@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "../../node_modules/react";
+import React, { useEffect, useState } from "react";
 import { Header, Footer } from "../Components/Layouts";
 import { Charts, ChartForm } from "../Components";
 

@@ -62,14 +62,14 @@ export default function Watchlist() {
   const [chartsSteven, setStevenCharts] = useState([]);
   const [chartsCheten, setChetenCharts] = useState([]);
   useEffect(() => {
-    fetch("/charts?username=steventt07").then(response =>
+    fetch("http://0.0.0.0:8000/charts?username=steventt07").then(response =>
       response.json().then(data => {
         setStevenCharts(data.charts);
       })
     );
   }, []);
   useEffect(() => {
-    fetch("/charts?username=cheten1234").then(response =>
+    fetch("http://0.0.0.0:8000/charts?username=cheten1234").then(response =>
       response.json().then(data => {
         setChetenCharts(data.charts);
       })

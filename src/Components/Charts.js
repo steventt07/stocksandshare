@@ -1,4 +1,4 @@
-import React from "../../node_modules/react";
+import React from "react";
 import { List, Header } from "../../node_modules/semantic-ui-react";
 
 export const Charts = ({ charts, username }) => {

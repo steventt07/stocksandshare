@@ -1,4 +1,4 @@
-import React, { useState } from "../../node_modules/react";
+import React, { useState } from "react";
 import { Form, Input, Button } from "../../node_modules/semantic-ui-react";
 import { useAlert } from "react-alert";
 //axios

@@ -1,4 +1,4 @@
-import React from "../../../node_modules/react";
+import React from "react";
 import "../../index.css";
 import { Link } from "../../../node_modules/react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
