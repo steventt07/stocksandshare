@@ -3,21 +3,21 @@ import { Header, Footer } from "../Components/Layouts";
 import { Charts, ChartForm } from "../Components";
 
 const Learn = () => {
-  const [charts, setCharts] = useState([]);
-  useEffect(() => {
-    fetch("http://0.0.0.0:8000/charts").then(response =>
-      response.json().then(data => {
-        setCharts(data.charts);
-      })
-    );
-  }, []);
+  // const [charts, setCharts] = useState([]);
+  // useEffect(() => {
+  //   fetch("/charts").then(response =>
+  //     response.json().then(data => {
+  //       setCharts(data.charts);
+  //     })
+  //   );
+  // }, []);
 
   return (
     <div className="container">
       <Header />
       <h2>Learn Page</h2>
-      <ChartForm />
-      <Charts charts={charts} />
+      {/* <ChartForm />
+      <Charts charts={charts} /> */}
       <Footer />
     </div>
   );

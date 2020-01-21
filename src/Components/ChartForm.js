@@ -130,7 +130,7 @@ export const ChartForm = () => {
                   stopLimit,
                   username
                 };
-                const response = await fetch("http://0.0.0.0:8000/charts", {
+                const response = await fetch("/charts", {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json"
