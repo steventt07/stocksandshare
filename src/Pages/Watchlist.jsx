@@ -40,19 +40,11 @@ function a11yProps(index) {
   };
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: 500
-  }
-}));
-
 export default function Watchlist() {
-  const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = newValue => {
     setValue(newValue);
   };
 
@@ -94,24 +86,24 @@ export default function Watchlist() {
             <Tab label="Cheten" {...a11yProps(1)} />
           </Tabs>
         </AppBar>
-        <SwipeableViews
+        {/* <SwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
           index={value}
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            {/* <ChartForm /> */}
+            <ChartForm />
             Form
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            {/* <Charts charts={chartsSteven} /> */}
+            <Charts charts={chartsSteven} />
             Steven
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            {/* <Charts charts={chartsCheten} /> */}
+            <Charts charts={chartsCheten} />
             Cheten
           </TabPanel>
-        </SwipeableViews>
+        </SwipeableViews> */}
       </div>
       <Footer />
     </div>
