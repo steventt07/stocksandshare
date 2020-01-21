@@ -59,22 +59,22 @@ export default function Watchlist() {
   const handleChangeIndex = index => {
     setValue(index);
   };
-  const [chartsSteven, setStevenCharts] = useState([]);
-  const [chartsCheten, setChetenCharts] = useState([]);
-  useEffect(() => {
-    fetch("http://0.0.0.0:8000/charts?username=steventt07").then(response =>
-      response.json().then(data => {
-        setStevenCharts(data.charts);
-      })
-    );
-  }, []);
-  useEffect(() => {
-    fetch("http://0.0.0.0:8000/charts?username=cheten1234").then(response =>
-      response.json().then(data => {
-        setChetenCharts(data.charts);
-      })
-    );
-  }, []);
+  // const [chartsSteven, setStevenCharts] = useState([]);
+  // const [chartsCheten, setChetenCharts] = useState([]);
+  // useEffect(() => {
+  //   fetch("http://0.0.0.0:8000/charts?username=steventt07").then(response =>
+  //     response.json().then(data => {
+  //       setStevenCharts(data.charts);
+  //     })
+  //   );
+  // }, []);
+  // useEffect(() => {
+  //   fetch("http://0.0.0.0:8000/charts?username=cheten1234").then(response =>
+  //     response.json().then(data => {
+  //       setChetenCharts(data.charts);
+  //     })
+  //   );
+  // }, []);
 
   return (
     <div className="container">
@@ -100,13 +100,16 @@ export default function Watchlist() {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <ChartForm />
+            {/* <ChartForm /> */}
+            Form
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            <Charts charts={chartsSteven} />
+            {/* <Charts charts={chartsSteven} /> */}
+            Steven
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            <Charts charts={chartsCheten} />
+            {/* <Charts charts={chartsCheten} /> */}
+            Cheten
           </TabPanel>
         </SwipeableViews>
       </div>
