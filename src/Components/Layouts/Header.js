@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -61,25 +62,20 @@ function Header() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem>
-            <Link style={styles} to="/about">
-              About
-            </Link>
+          <MenuItem component={Link} to="/about">
+            About
           </MenuItem>
-          <MenuItem>
-            <Link style={styles} to="/feature">
-              Feature
-            </Link>
+          <MenuItem component={Link} to="/feature">
+            Feature
           </MenuItem>
-          <MenuItem>
-            <Link style={styles} to="/trader">
-              Trader
-            </Link>
+          <MenuItem component={Link} to="/trader">
+            Trader
           </MenuItem>
-          <MenuItem>
-            <Link style={styles} to="/learn">
-              Learn
-            </Link>
+          <MenuItem component={Link} to="/watchlist">
+            Watchlist
+          </MenuItem>
+          <MenuItem component={Link} to="/learn">
+            Learn
           </MenuItem>
         </Menu>
         <Typography variant="h6" className={classes.title}>
@@ -87,6 +83,7 @@ function Header() {
             Stocks and Share
           </Link>
         </Typography>
+        <Button color="inherit">Login</Button>
       </Toolbar>
     </AppBar>
   );

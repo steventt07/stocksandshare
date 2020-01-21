@@ -53,7 +53,7 @@ const featurePageData = {
     "Integrate google analytics"
   ],
   phase_1:
-    "Create MVP (minimal viable product) , where traders can upload their stock anlysis and view them",
+    "Create MVP (minimal viable product), where traders can upload their stock anlysis and view them",
   phase_2:
     "Add in user/trader views and update user interface. Also intergrate with broker API to showcase P/L",
   phase_3:

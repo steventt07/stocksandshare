@@ -5,7 +5,7 @@ import { Charts, ChartForm } from "../Components";
 const Learn = () => {
   const [charts, setCharts] = useState([]);
   useEffect(() => {
-    fetch("/charts").then(response =>
+    fetch("http://0.0.0.0:8000/charts").then(response =>
       response.json().then(data => {
         setCharts(data.charts);
       })

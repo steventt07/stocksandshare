@@ -11,7 +11,7 @@ from datetime import datetime
 from wsgiref import simple_server
 from dateutil.parser import parse
 from app.util.db_connection import DbConnection
-from app.queries import QUERY_CHECK_CONNECTION, QUERY_SELECT_ALL, QUERY_INSERT_CHART
+from app.queries import QUERY_CHECK_CONNECTION, QUERY_SELECT_TRADER, QUERY_INSERT_CHART
 
 class AppService:
     def __init__(self):
@@ -21,7 +21,10 @@ class AppService:
     def on_get(self, req, resp):
         print('HTTP GET: /charts')
         cursor = self.dbconnection.connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute(QUERY_SELECT_ALL)
+        if req.params['username'] == "steventt07":
+            cursor.execute(QUERY_SELECT_TRADER, ("steventt07", ))
+        else:
+            cursor.execute(QUERY_SELECT_TRADER, ("cheten1234", ))
         response = []
         for record in cursor:
             response.append(
@@ -29,7 +32,11 @@ class AppService:
                     'chart_id': record[0],
                     'note': record[1],
                     'symbol': record[2],
-                    'image': record[3]
+                    'image': record[3],
+                    'entryprice': record[4],
+                    'sellLimit': record[5],
+                    'stopLimit': record[6]
+
                 }
             )
 
@@ -43,8 +50,16 @@ class AppService:
         try:
             print('HTTP POST: /charts')
             cursor = con.cursor()
+            print(req.media)
             base64_bytes = base64.b64decode(req.media['image'])
-            cursor.execute(QUERY_INSERT_CHART, (req.media['note'], req.media['symbol'], base64_bytes))
+            cursor.execute(QUERY_INSERT_CHART, (
+                req.media['note'], 
+                req.media['symbol'], 
+                base64_bytes, 
+                req.media['entrypoint'], 
+                req.media['sellLimit'], 
+                req.media['stopLimit'],
+                req.media['username'] ))
             con.commit()
 
             resp.status = falcon.HTTP_200
