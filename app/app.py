@@ -5,6 +5,7 @@ import logging
 import requests
 import sys
 import base64
+from datetime import datetime
 from falcon.http_status import HTTPStatus
 import psycopg2.extras
 from datetime import datetime
@@ -33,9 +34,10 @@ class AppService:
                     'note': record[1],
                     'symbol': record[2],
                     'image': record[3],
-                    'entryprice': record[4],
-                    'sellLimit': record[5],
-                    'stopLimit': record[6]
+                    'entry_point': record[4],
+                    'sell_limit': record[5],
+                    'stop_limit': record[6],
+                    'date_created': str(record[7])
 
                 }
             )
@@ -56,16 +58,16 @@ class AppService:
                 req.media['note'], 
                 req.media['symbol'], 
                 base64_bytes, 
-                req.media['entrypoint'], 
-                req.media['sellLimit'], 
-                req.media['stopLimit'],
-                req.media['username'] ))
+                req.media['entry_point'], 
+                req.media['sell_limit'], 
+                req.media['stop_limit'],
+                req.media['username'],
+                datetime.now() 
+                )
+            )
             con.commit()
 
             resp.status = falcon.HTTP_200
-            resp.media = {
-                "message": "hi"
-            }
 
         except psycopg2.DatabaseError as e:
             if con:

@@ -1,19 +1,32 @@
 import React, { useState } from "react";
-import { Form, Input, Button } from "../../node_modules/semantic-ui-react";
-import { useAlert } from "react-alert";
+import { Form, Button } from "../../node_modules/semantic-ui-react";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
 //axios
-
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1)
+  }
+}));
 export const ChartForm = () => {
-  // const alert = useAlert();
+  var proxy = "http://127.0.0.1:8000";
+  var post_path = "/charts";
+  var user1 = "steventt07";
+  var user2 = "cheten1234";
 
   const [image, setImage] = useState("");
   const [note, setNote] = useState("");
   const [symbol, setSymbol] = useState("");
-  const [entrypoint, setEntryoint] = useState("");
-  const [stopLimit, setStopLimit] = useState("");
-  const [sellLimit, setSellLimit] = useState("");
+  const [entry_point, setEntryPoint] = useState("");
+  const [stop_limit, setStopLimit] = useState("");
+  const [sell_limit, setSellLimit] = useState("");
   const [username, setUsername] = useState("");
 
+  const styles = { style: { textAlign: "center" } };
+  const flexContainer = {
+    display: "flex",
+    flexDirection: "row"
+  };
   const getBase64 = file => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -26,9 +39,9 @@ export const ChartForm = () => {
     document.getElementById("file-form").value = "";
     document.getElementById("note-form").value = "";
     document.getElementById("symbol-form").value = "";
-    document.getElementById("entrypoint-form").value = "";
-    document.getElementById("sellLimit-form").value = "";
-    document.getElementById("sellLimit-form").value = "";
+    document.getElementById("entry_point-form").value = "";
+    document.getElementById("sell_limit-form").value = "";
+    document.getElementById("sell_limit-form").value = "";
     document.getElementById("username-form").value = "";
   };
   function validateFields() {
@@ -36,9 +49,9 @@ export const ChartForm = () => {
       document.getElementById("file-form").value === "" ||
       document.getElementById("note-form").value === "" ||
       document.getElementById("symbol-form").value === "" ||
-      document.getElementById("entrypoint-form").value === "" ||
-      document.getElementById("sellLimit-form").value === "" ||
-      document.getElementById("sellLimit-form").value === ""
+      document.getElementById("entry_point-form").value === "" ||
+      document.getElementById("sell_limit-form").value === "" ||
+      document.getElementById("sell_limit-form").value === ""
     ) {
       return false;
     } else {
@@ -47,90 +60,107 @@ export const ChartForm = () => {
   }
   return (
     <Form>
-      <Form.Field>
-        <Input
-          id="file-form"
-          type="file"
-          onChange={e =>
-            getBase64(e.target.files[0]).then(result => {
-              setImage(result);
-            })
-          }
+      <TextField
+        inputProps={styles}
+        id="symbol-form"
+        placeholder="Stock Symbol"
+        value={symbol}
+        variant="outlined"
+        fullWidth
+        onChange={e => setSymbol(e.target.value)}
+      />
+      <TextField
+        inputProps={styles}
+        id="note-form"
+        placeholder="Note"
+        value={note}
+        multiline={true}
+        rows={4}
+        rowsMax={10}
+        variant="outlined"
+        fullWidth
+        onChange={e => setNote(e.target.value)}
+      />
+      <form style={flexContainer}>
+        <TextField
+          inputProps={styles}
+          id="entry_point-form"
+          type="number"
+          placeholder="Entry Point"
+          value={entry_point}
+          variant="outlined"
+          fullWidth
+          onChange={e => setEntryPoint(e.target.value)}
         />
-      </Form.Field>
-      <Form.Field>
-        <Input
-          id="note-form"
-          placeholder="note"
-          value={note}
-          onChange={e => setNote(e.target.value)}
-        />
-      </Form.Field>
-      <Form.Field>
-        <Input
-          id="symbol-form"
-          placeholder="stock symbol"
-          value={symbol}
-          onChange={e => setSymbol(e.target.value)}
-        />
-      </Form.Field>
-      <Form.Field>
-        <Input
-          id="entrypoint-form"
-          placeholder="entrypoint"
-          value={entrypoint}
-          onChange={e => setEntryoint(e.target.value)}
-        />
-      </Form.Field>
-      <Form.Field>
-        <Input
-          id="stopLimit-form"
-          placeholder="stop limit"
-          value={stopLimit}
+        <TextField
+          inputProps={styles}
+          id="stop_limit-form"
+          type="number"
+          placeholder="Stop Limit"
+          value={stop_limit}
+          variant="outlined"
+          fullWidth
           onChange={e => setStopLimit(e.target.value)}
         />
-      </Form.Field>
-      <Form.Field>
-        <Input
-          id="sellLimit-form"
-          placeholder="sell limit"
-          value={sellLimit}
+        <TextField
+          inputProps={styles}
+          id="sell_limit-form"
+          type="number"
+          placeholder="Sell Limit"
+          value={sell_limit}
+          variant="outlined"
+          fullWidth
           onChange={e => setSellLimit(e.target.value)}
         />
-      </Form.Field>
-      <Form.Field>
-        <Input
+      </form>
+      <form style={flexContainer}>
+        <Button variant="outlined" component="label" style={{ width: "100%" }}>
+          <input
+            id="file-form"
+            type="file"
+            onChange={e =>
+              getBase64(e.target.files[0]).then(result => {
+                setImage(result);
+              })
+            }
+          />
+        </Button>
+        <TextField
+          inputProps={styles}
           id="username-form"
-          placeholder="username"
+          placeholder="Username"
           value={username}
+          variant="outlined"
+          fullWidth
           onChange={e => setUsername(e.target.value)}
         />
-      </Form.Field>
-      <Form.Field>
+      </form>
+      <form style={flexContainer}>
         <Button
+          style={{ width: "100%", height: "40px" }}
           onClick={async () => {
             if (validateFields()) {
-              if (username == "steventt07" || username == "cheten1234") {
+              if (username == user1 || username == user2) {
                 console.log("invald user");
                 console.log(
                   image,
                   note,
                   symbol,
-                  entrypoint,
-                  sellLimit,
-                  stopLimit,
+                  entry_point,
+                  sell_limit,
+                  stop_limit,
                   username
                 );
                 const chart = {
                   image,
                   note,
                   symbol,
-                  entrypoint,
-                  sellLimit,
-                  stopLimit,
+                  entry_point,
+                  sell_limit,
+                  stop_limit,
                   username
                 };
-                const response = await fetch("/charts", {
+                const response = await fetch(proxy.concat(post_path), {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json"
@@ -143,7 +173,7 @@ export const ChartForm = () => {
                   setNote("");
                   setSymbol("");
                   setImage("");
-                  setEntryoint("");
+                  setEntryPoint("");
                   setStopLimit("");
                   setSellLimit("");
                   setUsername("");
@@ -157,7 +187,7 @@ export const ChartForm = () => {
         >
           submit
         </Button>
-      </Form.Field>
+      </form>
     </Form>
   );
 };
