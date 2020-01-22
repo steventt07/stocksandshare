@@ -24,13 +24,6 @@ function Body() {
   return (
     <div>
       <div className="categories">
-        <StockNote
-          name="AMD"
-          note="The chart broke the channel, it looks like it's going to test the bottom trendline."
-          imgUrl="amd.png"
-        />
-      </div>
-      <div className="categories">
         <p style={styles}>
           A place where traders can reflect on their trades and for others to
           learn from their success/mistakes

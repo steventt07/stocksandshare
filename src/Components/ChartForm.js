@@ -63,7 +63,7 @@ export const ChartForm = () => {
       <TextField
         inputProps={styles}
         id="symbol-form"
-        placeholder="Stock Symbol"
+        label="Stock Symbol"
         value={symbol}
         variant="outlined"
         fullWidth
@@ -72,7 +72,7 @@ export const ChartForm = () => {
       <TextField
         inputProps={styles}
         id="note-form"
-        placeholder="Note"
+        label="Note"
         value={note}
         multiline={true}
         rows={4}
@@ -86,7 +86,7 @@ export const ChartForm = () => {
           inputProps={styles}
           id="entry_point-form"
           type="number"
-          placeholder="Entry Point"
+          label="Entry Point"
           value={entry_point}
           variant="outlined"
           fullWidth
@@ -96,7 +96,7 @@ export const ChartForm = () => {
           inputProps={styles}
           id="stop_limit-form"
           type="number"
-          placeholder="Stop Limit"
+          label="Stop Limit"
           value={stop_limit}
           variant="outlined"
           fullWidth
@@ -106,7 +106,7 @@ export const ChartForm = () => {
           inputProps={styles}
           id="sell_limit-form"
           type="number"
-          placeholder="Sell Limit"
+          label="Sell Limit"
           value={sell_limit}
           variant="outlined"
           fullWidth
@@ -128,7 +128,7 @@ export const ChartForm = () => {
         <TextField
           inputProps={styles}
           id="username-form"
-          placeholder="Username"
+          label="Username"
           value={username}
           variant="outlined"
           fullWidth

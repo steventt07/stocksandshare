@@ -25,10 +25,6 @@ const useStyles = makeStyles(theme => ({
 
 function Header() {
   const classes = useStyles();
-  let styles = {
-    "text-decoration": "none",
-    color: "#000000"
-  };
   let home_styles = {
     "text-decoration": "none",
     color: "#FFFFFF",
