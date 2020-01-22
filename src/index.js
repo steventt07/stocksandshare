@@ -1,15 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 //Pages
-import { About, Feature, Learn, Trader, Main, NotFound } from "./Pages";
+import {
+  About,
+  Feature,
+  Learn,
+  Trader,
+  Main,
+  Watchlist,
+  NotFound
+} from "./Pages";
 
 ReactDOM.render(
   <Router>
@@ -19,6 +22,7 @@ ReactDOM.render(
       <Route exact path="/feature" component={Feature} />
       <Route exact path="/trader" component={Trader} />
       <Route exact path="/learn" component={Learn} />
+      <Route exact path="/watchlist" component={Watchlist} />
       <Route exact path="/404" component={NotFound} />
     </Switch>
   </Router>,

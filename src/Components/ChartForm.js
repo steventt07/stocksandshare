@@ -1,12 +1,32 @@
-import React, { useState } from "../../node_modules/react";
-import { Form, Input, Button } from "../../node_modules/semantic-ui-react";
+import React, { useState } from "react";
+import { Form, Button } from "../../node_modules/semantic-ui-react";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
 //axios
-
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1)
+  }
+}));
 export const ChartForm = () => {
+  var proxy = "http://127.0.0.1:8000";
+  var post_path = "/charts";
+  var user1 = "steventt07";
+  var user2 = "cheten1234";
+
   const [image, setImage] = useState("");
   const [note, setNote] = useState("");
   const [symbol, setSymbol] = useState("");
+  const [entry_point, setEntryPoint] = useState("");
+  const [stop_limit, setStopLimit] = useState("");
+  const [sell_limit, setSellLimit] = useState("");
+  const [username, setUsername] = useState("");
 
+  const styles = { style: { textAlign: "center" } };
+  const flexContainer = {
+    display: "flex",
+    flexDirection: "row"
+  };
   const getBase64 = file => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -19,12 +39,19 @@ export const ChartForm = () => {
     document.getElementById("file-form").value = "";
     document.getElementById("note-form").value = "";
     document.getElementById("symbol-form").value = "";
+    document.getElementById("entry_point-form").value = "";
+    document.getElementById("sell_limit-form").value = "";
+    document.getElementById("sell_limit-form").value = "";
+    document.getElementById("username-form").value = "";
   };
   function validateFields() {
     if (
       document.getElementById("file-form").value === "" ||
-      document.getElementById("file-form").value === "" ||
-      document.getElementById("file-form").value === ""
+      document.getElementById("note-form").value === "" ||
+      document.getElementById("symbol-form").value === "" ||
+      document.getElementById("entry_point-form").value === "" ||
+      document.getElementById("sell_limit-form").value === "" ||
+      document.getElementById("sell_limit-form").value === ""
     ) {
       return false;
     } else {
@@ -33,53 +60,125 @@ export const ChartForm = () => {
   }
   return (
     <Form>
-      <Form.Field>
-        <Input
-          id="file-form"
-          type="file"
-          onChange={e =>
-            getBase64(e.target.files[0]).then(result => {
-              setImage(result);
-            })
-          }
+      <TextField
+        inputProps={styles}
+        id="symbol-form"
+        label="Stock Symbol"
+        value={symbol}
+        variant="outlined"
+        fullWidth
+        onChange={e => setSymbol(e.target.value)}
+      />
+      <TextField
+        inputProps={styles}
+        id="note-form"
+        label="Note"
+        value={note}
+        multiline={true}
+        rows={4}
+        rowsMax={10}
+        variant="outlined"
+        fullWidth
+        onChange={e => setNote(e.target.value)}
+      />
+      <form style={flexContainer}>
+        <TextField
+          inputProps={styles}
+          id="entry_point-form"
+          type="number"
+          label="Entry Point"
+          value={entry_point}
+          variant="outlined"
+          fullWidth
+          onChange={e => setEntryPoint(e.target.value)}
         />
-      </Form.Field>
-      <Form.Field>
-        <Input
-          id="note-form"
-          placeholder="note"
-          value={note}
-          onChange={e => setNote(e.target.value)}
+        <TextField
+          inputProps={styles}
+          id="stop_limit-form"
+          type="number"
+          label="Stop Limit"
+          value={stop_limit}
+          variant="outlined"
+          fullWidth
+          onChange={e => setStopLimit(e.target.value)}
         />
-      </Form.Field>
-      <Form.Field>
-        <Input
-          id="symbol-form"
-          placeholder="stock symbol"
-          value={symbol}
-          onChange={e => setSymbol(e.target.value)}
+        <TextField
+          inputProps={styles}
+          id="sell_limit-form"
+          type="number"
+          label="Sell Limit"
+          value={sell_limit}
+          variant="outlined"
+          fullWidth
+          onChange={e => setSellLimit(e.target.value)}
         />
-      </Form.Field>
-      <Form.Field>
+      </form>
+      <form style={flexContainer}>
+        <Button variant="outlined" component="label" style={{ width: "100%" }}>
+          <input
+            id="file-form"
+            type="file"
+            onChange={e =>
+              getBase64(e.target.files[0]).then(result => {
+                setImage(result);
+              })
+            }
+          />
+        </Button>
+        <TextField
+          inputProps={styles}
+          id="username-form"
+          label="Username"
+          value={username}
+          variant="outlined"
+          fullWidth
+          onChange={e => setUsername(e.target.value)}
+        />
+      </form>
+      <form style={flexContainer}>
         <Button
+          style={{ width: "100%", height: "40px" }}
           onClick={async () => {
             if (validateFields()) {
-              console.log(image, note, symbol);
-              const chart = { image, note, symbol };
-              const response = await fetch("/charts", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify(chart)
-              });
+              if (username == user1 || username == user2) {
+                console.log("invald user");
+                console.log(
+                  image,
+                  note,
+                  symbol,
+                  entry_point,
+                  sell_limit,
+                  stop_limit,
+                  username
+                );
+                const chart = {
+                  image,
+                  note,
+                  symbol,
+                  entry_point,
+                  sell_limit,
+                  stop_limit,
+                  username
+                };
+                const response = await fetch(proxy.concat(post_path), {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(chart)
+                });
 
-              if (response.ok) {
-                console.log("response worked!!");
-                setNote("");
-                setSymbol("");
-                setImage("");
-                clearText();
+                if (response.ok) {
+                  console.log("response worked!!");
+                  setNote("");
+                  setSymbol("");
+                  setImage("");
+                  setEntryPoint("");
+                  setStopLimit("");
+                  setSellLimit("");
+                  setUsername("");
+                  clearText();
+                }
               }
             } else {
               console.log("Invalid Form");
@@ -88,7 +187,7 @@ export const ChartForm = () => {
         >
           submit
         </Button>
-      </Form.Field>
+      </form>
     </Form>
   );
 };
