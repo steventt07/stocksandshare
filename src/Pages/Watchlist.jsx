@@ -6,7 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { Header, Footer } from "../Components/Layouts";
-import { Charts, ChartForm } from "../Components";
+import { Charts, ChartForm, WatchlistForm } from "../Components";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -20,7 +20,7 @@ function TabPanel(props) {
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && <Box p={5}>{children}</Box>}
     </Typography>
   );
 }
@@ -40,6 +40,15 @@ function a11yProps(index) {
 
 export default function Watchlist() {
   const [value, setValue] = React.useState(0);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -50,6 +59,7 @@ export default function Watchlist() {
   var getUser2 = "/charts?username=cheten1234";
   const [chartsSteven, setStevenCharts] = useState([]);
   const [chartsCheten, setChetenCharts] = useState([]);
+
   useEffect(() => {
     fetch(proxy.concat(getUser1)).then(response =>
       response.json().then(data => {
@@ -78,18 +88,30 @@ export default function Watchlist() {
             centered
             aria-label="full width tabs example"
           >
-            <Tab label="Upload" {...a11yProps(1)} />
-            <Tab label="Steven Tran" {...a11yProps(1)} />
-            <Tab label="Cheten" {...a11yProps(2)} />
+            <Tab label="Watchlist" {...a11yProps(0)} />
+            <Tab label="Long" {...a11yProps(1)} />
+            <Tab label="Short" {...a11yProps(2)} />
+            <Tab label="Steven Tran" {...a11yProps(3)} />
+            <Tab label="Cheten" {...a11yProps(4)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <ChartForm />
+          <WatchlistForm />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Charts charts={chartsSteven} />
+          <ChartForm
+            type={["Entry Point", "Sell Limit", "Stop Limit", "LONG"]}
+          />
         </TabPanel>
         <TabPanel value={value} index={2}>
+          <ChartForm
+            type={["Sell Point", "Cover Limit", "Stop Limit", "SHORT"]}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <Charts charts={chartsSteven} />
+        </TabPanel>
+        <TabPanel value={value} index={4}>
           <Charts charts={chartsCheten} />
         </TabPanel>
       </div>

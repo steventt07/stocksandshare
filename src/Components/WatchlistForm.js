@@ -8,20 +8,20 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   }
 }));
-export const ChartForm = ({ type }) => {
+export const WatchlistForm = () => {
   var proxy = "http://127.0.0.1:8000";
   var post_path = "/charts";
   var user1 = "steventt07";
   var user2 = "cheten1234";
-  const trade_type = type[3];
 
   const [image, setImage] = useState("");
   const [note, setNote] = useState("");
   const [symbol, setSymbol] = useState("");
-  const [entry_point, setEntryPoint] = useState("");
-  const [stop_limit, setStopLimit] = useState("");
-  const [sell_limit, setSellLimit] = useState("");
+  const [entry_point, setEntryPoint] = useState(0);
+  const [stop_limit, setStopLimit] = useState(0);
+  const [sell_limit, setSellLimit] = useState(0);
   const [username, setUsername] = useState("");
+  const [trade_type, setTradeType] = useState("WATCHLIST");
 
   const styles = { style: { textAlign: "center" } };
   const flexContainer = {
@@ -40,19 +40,13 @@ export const ChartForm = ({ type }) => {
     document.getElementById("file-form").value = "";
     document.getElementById("note-form").value = "";
     document.getElementById("symbol-form").value = "";
-    document.getElementById("entry_point-form").value = "";
-    document.getElementById("stop_limit-form").value = "";
-    document.getElementById("sell_limit-form").value = "";
     document.getElementById("username-form").value = "";
   };
   function validateFields() {
     if (
       document.getElementById("file-form").value === "" ||
       document.getElementById("note-form").value === "" ||
-      document.getElementById("symbol-form").value === "" ||
-      document.getElementById("entry_point-form").value === "" ||
-      document.getElementById("stop_limit-form").value === "" ||
-      document.getElementById("sell_limit-form").value === ""
+      document.getElementById("symbol-form").value === ""
     ) {
       return false;
     } else {
@@ -82,38 +76,6 @@ export const ChartForm = ({ type }) => {
         fullWidth
         onChange={e => setNote(e.target.value)}
       />
-      <form style={flexContainer}>
-        <TextField
-          inputProps={styles}
-          id="entry_point-form"
-          type="number"
-          label={type[0]}
-          value={entry_point}
-          variant="outlined"
-          fullWidth
-          onChange={e => setEntryPoint(e.target.value)}
-        />
-        <TextField
-          inputProps={styles}
-          id="stop_limit-form"
-          type="number"
-          label={type[1]}
-          value={stop_limit}
-          variant="outlined"
-          fullWidth
-          onChange={e => setStopLimit(e.target.value)}
-        />
-        <TextField
-          inputProps={styles}
-          id="sell_limit-form"
-          type="number"
-          label={type[2]}
-          value={sell_limit}
-          variant="outlined"
-          fullWidth
-          onChange={e => setSellLimit(e.target.value)}
-        />
-      </form>
       <form style={flexContainer}>
         <Button variant="outlined" component="label" style={{ width: "100%" }}>
           <input
@@ -176,9 +138,6 @@ export const ChartForm = ({ type }) => {
                   setNote("");
                   setSymbol("");
                   setImage("");
-                  setEntryPoint("");
-                  setStopLimit("");
-                  setSellLimit("");
                   setUsername("");
                   clearText();
                 }

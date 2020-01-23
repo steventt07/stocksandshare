@@ -37,7 +37,8 @@ class AppService:
                     'entry_point': record[4],
                     'sell_limit': record[5],
                     'stop_limit': record[6],
-                    'date_created': str(record[7])
+                    'date_created': str(record[7]),
+                    'trade_type': record[8]
 
                 }
             )
@@ -62,7 +63,8 @@ class AppService:
                 req.media['sell_limit'], 
                 req.media['stop_limit'],
                 req.media['username'],
-                datetime.now() 
+                datetime.now() ,
+                req.media['trade_type']
                 )
             )
             con.commit()

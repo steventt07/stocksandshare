@@ -24,7 +24,9 @@ const featurePageData = {
     "Added logging to gunicorn for performace and debugging purposes",
     "Deployed Falcon server and Postgres database into production",
     "Figured out forwarding of url. so like stocksandshare.com goes to the website, instead of https://stocksandshare.com",
-    "Make population of charts and notes dynamic "
+    "Make population of charts and notes dynamic ",
+    "Created a fluid view for uploaded and viewing trades.charts",
+    "Added two traders [Steven, Cheten] for uploaded content"
   ],
   backlog: [
     "Made sections for charts [watchlist, current_trade, past_trades]",
@@ -50,7 +52,14 @@ const featurePageData = {
     "Add in mistakes section user Features",
     "Add in suggestions box website improvement",
     "Get logo for website",
-    "Integrate google analytics"
+    "Integrate google analytics",
+    "Add in toggle button to switch between upload types [open trade, watchlist, close trade -> linked to a open trade]",
+    "Add in type of trade [long, short, call, put]",
+    "Add in tab bar to see [watchlist, trades] from trader",
+    "Add in collapsable view for each watchlist/trade. Click would invoke a GET call and populate that view",
+    "Add colors to completed trades [Green,Red]",
+    "Add in articles for the main page",
+    "Add in content for the learning section (starting with options)"
   ],
   phase_1:
     "Create MVP (minimal viable product), where traders can upload their stock anlysis and view them",
