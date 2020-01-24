@@ -26,7 +26,9 @@ const featurePageData = {
     "Figured out forwarding of url. so like stocksandshare.com goes to the website, instead of https://stocksandshare.com",
     "Make population of charts and notes dynamic ",
     "Created a fluid view for uploaded and viewing trades.charts",
-    "Added two traders [Steven, Cheten] for uploaded content"
+    "Added two traders [Steven, Cheten] for uploaded content",
+    "Moved trades to Trader section",
+    "Moved [Watchlist,Long,Short] into Upload section"
   ],
   backlog: [
     "Made sections for charts [watchlist, current_trade, past_trades]",

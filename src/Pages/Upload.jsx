@@ -6,7 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { Header, Footer } from "../Components/Layouts";
-import { Charts } from "../Components";
+import { ChartForm, WatchlistForm } from "../Components";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -20,7 +20,7 @@ function TabPanel(props) {
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={2}>{children}</Box>}
+      {value === index && <Box p={3}>{children}</Box>}
     </Typography>
   );
 }
@@ -38,42 +38,17 @@ function a11yProps(index) {
   };
 }
 
-export default function Trader() {
+export default function Upload() {
   const [value, setValue] = React.useState(0);
-  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  var proxy = "http://127.0.0.1:8000";
-  var getUser1 = "/charts?username=steventt07";
-  var getUser2 = "/charts?username=cheten1234";
-  const [chartsSteven, setStevenCharts] = useState([]);
-  const [chartsCheten, setChetenCharts] = useState([]);
-
-  useEffect(() => {
-    fetch(proxy.concat(getUser1)).then(response =>
-      response.json().then(data => {
-        setStevenCharts(data.charts);
-      })
-    );
-  }, []);
-  useEffect(() => {
-    fetch(proxy.concat(getUser2)).then(response =>
-      response.json().then(data => {
-        setChetenCharts(data.charts);
-      })
-    );
-  }, []);
-
   return (
     <div className="container">
       <Header />
       <div>
-        <h2>Traders</h2>
-        <h3>Steven Tran - Technical Analysis</h3>
-        <h3>Cheten - News/Momentum</h3>
         <AppBar position="static" color="default">
           <Tabs
             value={value}
@@ -83,15 +58,23 @@ export default function Trader() {
             centered
             aria-label="full width tabs example"
           >
-            <Tab label="Steven Tran" {...a11yProps(0)} />
-            <Tab label="Cheten" {...a11yProps(1)} />
+            <Tab label="Watchlist" {...a11yProps(0)} />
+            <Tab label="Long" {...a11yProps(1)} />
+            <Tab label="Short" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <Charts charts={chartsSteven} />
+          <WatchlistForm />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Charts charts={chartsCheten} />
+          <ChartForm
+            type={["Entry Point", "Sell Limit", "Stop Limit", "LONG"]}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <ChartForm
+            type={["Sell Point", "Cover Limit", "Stop Limit", "SHORT"]}
+          />
         </TabPanel>
       </div>
       <Footer />

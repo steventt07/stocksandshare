@@ -27,17 +27,6 @@ const mainPageData = [
       "If the price action goes past your support line, wait for the test of the supportline and sell there",
       "If the price action goes in your direction greater than expected, take some profits and reduce your risk"
     ]
-  },
-  {
-    id: 4,
-    title: "Greetings",
-    content: [
-      "Cameron Dekohary",
-      "Alondra Torres",
-      "Hanna Banana",
-      "Payton Unger",
-      "Junior Sanchez"
-    ]
   }
 ];
 

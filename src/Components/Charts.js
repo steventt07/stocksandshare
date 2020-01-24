@@ -37,6 +37,7 @@ export const Charts = ({ charts }) => {
                     fullWidth
                   />
                 </form>
+                <br />
                 <img src={`data:image/png;base64,${chart.image}`} />
                 <br />
                 <TextField
@@ -44,6 +45,9 @@ export const Charts = ({ charts }) => {
                   label="Note"
                   value={chart.note}
                   variant="outlined"
+                  multiline={true}
+                  rows={4}
+                  rowsMax={10}
                   fullWidth
                 />
                 <br />
@@ -79,6 +83,7 @@ export const Charts = ({ charts }) => {
                     fullWidth
                   />
                 </form>
+                <br />
                 <img src={`data:image/png;base64,${chart.image}`} />
                 <br />
                 <TextField
@@ -87,6 +92,9 @@ export const Charts = ({ charts }) => {
                   value={chart.note}
                   variant="outlined"
                   fullWidth
+                  multiline={true}
+                  rows={4}
+                  rowsMax={10}
                 />
                 <form style={flexContainer}>
                   <TextField
