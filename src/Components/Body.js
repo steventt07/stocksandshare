@@ -6,6 +6,7 @@ function Body() {
   };
   return (
     <div>
+      <br />
       <div className="categories">
         <h2>Stocks and Share</h2>
         <p style={styles}>

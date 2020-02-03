@@ -6,7 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { Header, Footer } from "../Components/Layouts";
-import { ChartForm, WatchlistForm } from "../Components";
+import { ChartForm, WatchlistForm, TradeForm } from "../Components";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -67,13 +67,13 @@ export default function Upload() {
           <WatchlistForm />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <ChartForm
-            type={["Entry Point", "Sell Limit", "Stop Limit", "LONG"]}
+          <TradeForm
+            type={["Entry Price", "Sell Limit", "Stop Limit", "LONG"]}
           />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <ChartForm
-            type={["Sell Point", "Cover Limit", "Stop Limit", "SHORT"]}
+          <TradeForm
+            type={["Sell Price", "Cover Limit", "Stop Limit", "SHORT"]}
           />
         </TabPanel>
       </div>

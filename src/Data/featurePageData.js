@@ -61,7 +61,8 @@ const featurePageData = {
     "Add in collapsable view for each watchlist/trade. Click would invoke a GET call and populate that view",
     "Add colors to completed trades [Green,Red]",
     "Add in articles for the main page",
-    "Add in content for the learning section (starting with options)"
+    "Add in content for the learning section (starting with options)",
+    "Add in Server Side Validation"
   ],
   phase_1:
     "Create MVP (minimal viable product), where traders can upload their stock anlysis and view them",

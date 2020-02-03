@@ -9,20 +9,21 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   }
 }));
-export const WatchlistForm = () => {
+export const TradeForm = ({ type }) => {
   var proxy = "http://127.0.0.1:8000";
-  var post_path = "/watchlist";
+  var post_path = "/trade";
   var user1 = "steventt07";
   var user2 = "cheten1234";
+  const trade_type = type[3];
 
   const [image, setImage] = useState("");
   const [note, setNote] = useState("");
   const [symbol, setSymbol] = useState("");
-  const [entry_point, setEntryPoint] = useState(0);
-  const [stop_limit, setStopLimit] = useState(0);
-  const [sell_limit, setSellLimit] = useState(0);
+  const [entry_price, setEntryPrice] = useState("");
+  const [stop_limit, setStopLimit] = useState("");
+  const [sell_limit, setSellLimit] = useState("");
   const [username, setUsername] = useState("");
-  const [trade_type, setTradeType] = useState("WATCHLIST");
+  //   placeholder values, will get values from props and file information
   const [image_name, setImageName] = useState("AMD");
   const [image_type, setImageType] = useState("PGN");
 
@@ -43,13 +44,19 @@ export const WatchlistForm = () => {
     document.getElementById("file-form").value = "";
     document.getElementById("note-form").value = "";
     document.getElementById("symbol-form").value = "";
+    document.getElementById("entry_price-form").value = "";
+    document.getElementById("stop_limit-form").value = "";
+    document.getElementById("sell_limit-form").value = "";
     document.getElementById("username-form").value = "";
   };
   function validateFields() {
     if (
       document.getElementById("file-form").value === "" ||
       document.getElementById("note-form").value === "" ||
-      document.getElementById("symbol-form").value === ""
+      document.getElementById("symbol-form").value === "" ||
+      document.getElementById("entry_price-form").value === "" ||
+      document.getElementById("stop_limit-form").value === "" ||
+      document.getElementById("sell_limit-form").value === ""
     ) {
       return false;
     } else {
@@ -79,6 +86,38 @@ export const WatchlistForm = () => {
         fullWidth
         onChange={e => setNote(e.target.value)}
       />
+      <form style={flexContainer}>
+        <TextField
+          inputProps={styles}
+          id="entry_price-form"
+          type="number"
+          label={type[0]}
+          value={entry_price}
+          variant="outlined"
+          fullWidth
+          onChange={e => setEntryPrice(e.target.value)}
+        />
+        <TextField
+          inputProps={styles}
+          id="stop_limit-form"
+          type="number"
+          label={type[1]}
+          value={stop_limit}
+          variant="outlined"
+          fullWidth
+          onChange={e => setStopLimit(e.target.value)}
+        />
+        <TextField
+          inputProps={styles}
+          id="sell_limit-form"
+          type="number"
+          label={type[2]}
+          value={sell_limit}
+          variant="outlined"
+          fullWidth
+          onChange={e => setSellLimit(e.target.value)}
+        />
+      </form>
       <form style={flexContainer}>
         <Button variant="outlined" component="label" style={{ width: "100%" }}>
           <input
@@ -114,25 +153,25 @@ export const WatchlistForm = () => {
                   image,
                   note,
                   symbol,
-                  entry_point,
+                  entry_price,
                   sell_limit,
                   stop_limit,
                   username,
                   trade_type,
-                  image_name,
-                  image_type
+                  image_type,
+                  image_name
                 );
                 const chart = {
                   image,
                   note,
                   symbol,
-                  entry_point,
+                  entry_price,
                   sell_limit,
                   stop_limit,
                   username,
                   trade_type,
-                  image_name,
-                  image_type
+                  image_type,
+                  image_name
                 };
                 const response = await fetch(proxy.concat(post_path), {
                   method: "POST",
@@ -147,6 +186,9 @@ export const WatchlistForm = () => {
                   setNote("");
                   setSymbol("");
                   setImage("");
+                  setEntryPrice("");
+                  setStopLimit("");
+                  setSellLimit("");
                   setUsername("");
                   clearText();
                 }

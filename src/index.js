@@ -4,7 +4,17 @@ import ReactDOM from "react-dom";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 //Pages
-import { About, Feature, Learn, Trader, Main, Upload, NotFound } from "./Pages";
+import {
+  About,
+  Feature,
+  Learn,
+  Trader,
+  Main,
+  Upload,
+  NotFound,
+  Exit,
+  Login
+} from "./Pages";
 
 ReactDOM.render(
   <Router>
@@ -15,6 +25,8 @@ ReactDOM.render(
       <Route exact path="/trader" component={Trader} />
       <Route exact path="/learn" component={Learn} />
       <Route exact path="/upload" component={Upload} />
+      <Route exact path="/exit/:trade_id/:symbol" component={Exit} />
+      <Route exact path="/login" component={Login} />
       <Route exact path="/404" component={NotFound} />
     </Switch>
   </Router>,
