@@ -52,7 +52,7 @@ export const Trades = ({ charts }) => {
                     />
                   </form>
                   <br />
-                  <img src={`data:image/png;base64,${chart.entry_note}`} />
+                  <img src={`data:image/png;base64,${chart.entry_image}`} />
                   <br />
                   <TextField
                     inputProps={styles}
@@ -147,7 +147,7 @@ export const Trades = ({ charts }) => {
                   />
                 </form>
                 <br />
-                <img src={`data:image/png;base64,${chart.entry_note}`} />
+                <img src={`data:image/png;base64,${chart.entry_image}`} />
                 <br />
                 <TextField
                   inputProps={styles}

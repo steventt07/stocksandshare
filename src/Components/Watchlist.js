@@ -34,7 +34,7 @@ export const Watchlist = ({ charts }) => {
                 />
               </form>
               <br />
-              <img src={`data:image/png;base64,${chart.image}`} />
+              <img src={`data:image/png;base64,${chart.image_bytes}`} />
               <br />
               <TextField
                 inputProps={styles}
