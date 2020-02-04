@@ -73,9 +73,6 @@ function Header() {
           <MenuItem component={Link} to="/learn">
             Learn
           </MenuItem>
-          <MenuItem component={Link} to="/login">
-            Login
-          </MenuItem>
         </Menu>
         <Typography variant="h6" className={classes.title}>
           <Link style={home_styles} to="/">

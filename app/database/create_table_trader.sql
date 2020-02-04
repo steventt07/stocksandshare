@@ -5,5 +5,3 @@ CREATE TABLE IF NOT EXISTS trader (
     date_created DATE
 
 );
-
-CREATE INDEX idx_trader_id_1 ON trader(trader_id);

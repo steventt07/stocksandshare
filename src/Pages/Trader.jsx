@@ -49,7 +49,8 @@ export default function Trader() {
     setValue(newValue);
   };
 
-  var proxy = "http://127.0.0.1:8000";
+  // var proxy = "http://127.0.0.1:8000";
+  var proxy = "";
   var getTrade1 = "/trade?username=steventt07";
   var getTrade2 = "/trade?username=cheten1234";
   var getWatchlist1 = "/watchlist?username=steventt07";

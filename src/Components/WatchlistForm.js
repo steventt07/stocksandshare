@@ -10,7 +10,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 export const WatchlistForm = () => {
-  var proxy = "http://127.0.0.1:8000";
+  // var proxy = "http://127.0.0.1:8000";
+  var proxy = "";
   var post_path = "/watchlist";
   var user1 = "steventt07";
   var user2 = "cheten1234";

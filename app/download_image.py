@@ -1,10 +1,10 @@
 import psycopg2
 import sys
 
-con = psycopg2.connect(host='localhost',
-                                               database='postgres',
-                                               user='postgres',
-                                               password='Northface12!')
+con = psycopg2.connect(host='159.89.55.123',
+                        database='steventran',
+                        user='steventran',
+                        password='Mangastream12!')
 cur = con.cursor()
 cur.execute("SELECT symbol, image from chart")
 for row in cur:

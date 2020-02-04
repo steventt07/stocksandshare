@@ -12,8 +12,7 @@ import {
   Main,
   Upload,
   NotFound,
-  Exit,
-  Login
+  Exit
 } from "./Pages";
 
 ReactDOM.render(
@@ -26,7 +25,6 @@ ReactDOM.render(
       <Route exact path="/learn" component={Learn} />
       <Route exact path="/upload" component={Upload} />
       <Route exact path="/exit/:trade_id/:symbol" component={Exit} />
-      <Route exact path="/login" component={Login} />
       <Route exact path="/404" component={NotFound} />
     </Switch>
   </Router>,
