@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import { Form, Button } from "../../node_modules/semantic-ui-react";
+import { Form } from "../../node_modules/semantic-ui-react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-//axios
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1)
   }
 }));
-export const ChartForm = ({ type }) => {
-  var proxy = "http://127.0.0.1:8000";
-  // var proxy = "";
-  var post_path = "/charts";
+export const TradeForm = ({ type }) => {
+  // var proxy = "http://127.0.0.1:8000";
+  var proxy = "";
+  var post_path = "/trade";
   var user1 = "steventt07";
   var user2 = "cheten1234";
   const trade_type = type[3];
@@ -19,10 +23,40 @@ export const ChartForm = ({ type }) => {
   const [image, setImage] = useState("");
   const [note, setNote] = useState("");
   const [symbol, setSymbol] = useState("");
-  const [entry_point, setEntryPoint] = useState("");
+  const [entry_price, setEntryPrice] = useState("");
   const [stop_limit, setStopLimit] = useState("");
   const [sell_limit, setSellLimit] = useState("");
   const [username, setUsername] = useState("");
+  //   placeholder values, will get values from props and file information
+  const [image_name, setImageName] = useState("AMD");
+  const [image_type, setImageType] = useState("PGN");
+  const [openInvalidUser, setOpenInvalidUser] = React.useState(false);
+  const [openInvalidForm, setOpenInvalidForm] = React.useState(false);
+  const [openSuccess, setSuccess] = React.useState(false);
+
+  const handleClickOpenInvalidUser = () => {
+    setOpenInvalidUser(true);
+  };
+
+  const handleClickOpenInvalidForm = () => {
+    setOpenInvalidForm(true);
+  };
+
+  const handleClickOpenSuccess = () => {
+    setSuccess(true);
+  };
+
+  const handleCloseInvalidUser = () => {
+    setOpenInvalidUser(false);
+  };
+
+  const handleCloseInvalidForm = () => {
+    setOpenInvalidForm(false);
+  };
+
+  const handleCloseSuccess = () => {
+    setSuccess(false);
+  };
 
   const styles = { style: { textAlign: "center" } };
   const flexContainer = {
@@ -41,7 +75,7 @@ export const ChartForm = ({ type }) => {
     document.getElementById("file-form").value = "";
     document.getElementById("note-form").value = "";
     document.getElementById("symbol-form").value = "";
-    document.getElementById("entry_point-form").value = "";
+    document.getElementById("entry_price-form").value = "";
     document.getElementById("stop_limit-form").value = "";
     document.getElementById("sell_limit-form").value = "";
     document.getElementById("username-form").value = "";
@@ -51,7 +85,7 @@ export const ChartForm = ({ type }) => {
       document.getElementById("file-form").value === "" ||
       document.getElementById("note-form").value === "" ||
       document.getElementById("symbol-form").value === "" ||
-      document.getElementById("entry_point-form").value === "" ||
+      document.getElementById("entry_price-form").value === "" ||
       document.getElementById("stop_limit-form").value === "" ||
       document.getElementById("sell_limit-form").value === ""
     ) {
@@ -86,13 +120,13 @@ export const ChartForm = ({ type }) => {
       <form style={flexContainer}>
         <TextField
           inputProps={styles}
-          id="entry_point-form"
+          id="entry_price-form"
           type="number"
           label={type[0]}
-          value={entry_point}
+          value={entry_price}
           variant="outlined"
           fullWidth
-          onChange={e => setEntryPoint(e.target.value)}
+          onChange={e => setEntryPrice(e.target.value)}
         />
         <TextField
           inputProps={styles}
@@ -140,29 +174,34 @@ export const ChartForm = ({ type }) => {
       <form style={flexContainer}>
         <Button
           style={{ width: "100%", height: "40px" }}
+          variant="contained"
+          color="primary"
           onClick={async () => {
             if (validateFields()) {
               if (username == user1 || username == user2) {
-                console.log("invald user");
                 console.log(
                   image,
                   note,
                   symbol,
-                  entry_point,
+                  entry_price,
                   sell_limit,
                   stop_limit,
                   username,
-                  trade_type
+                  trade_type,
+                  image_type,
+                  image_name
                 );
                 const chart = {
                   image,
                   note,
                   symbol,
-                  entry_point,
+                  entry_price,
                   sell_limit,
                   stop_limit,
                   username,
-                  trade_type
+                  trade_type,
+                  image_type,
+                  image_name
                 };
                 const response = await fetch(proxy.concat(post_path), {
                   method: "POST",
@@ -173,24 +212,69 @@ export const ChartForm = ({ type }) => {
                 });
 
                 if (response.ok) {
-                  console.log("response worked!!");
+                  handleClickOpenSuccess();
                   setNote("");
                   setSymbol("");
                   setImage("");
-                  setEntryPoint("");
+                  setEntryPrice("");
                   setStopLimit("");
                   setSellLimit("");
                   setUsername("");
                   clearText();
                 }
+              } else {
+                handleClickOpenInvalidUser();
               }
             } else {
-              console.log("Invalid Form");
+              handleClickOpenInvalidForm();
             }
           }}
         >
           submit
         </Button>
+        <Dialog
+          open={openInvalidUser}
+          onClose={handleCloseInvalidUser}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Invalid Username"}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseInvalidUser} color="primary" autoFocus>
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={openInvalidForm}
+          onClose={handleCloseInvalidForm}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Invalid Form"}</DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseInvalidForm} color="primary" autoFocus>
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={openSuccess}
+          onClose={handleCloseSuccess}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Success! Your tade was uploaded"}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseSuccess} color="primary" autoFocus>
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
       </form>
     </Form>
   );

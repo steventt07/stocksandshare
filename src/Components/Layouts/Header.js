@@ -67,8 +67,8 @@ function Header() {
           <MenuItem component={Link} to="/trader">
             Trader
           </MenuItem>
-          <MenuItem component={Link} to="/watchlist">
-            Watchlist
+          <MenuItem component={Link} to="/upload">
+            Upload
           </MenuItem>
           <MenuItem component={Link} to="/learn">
             Learn

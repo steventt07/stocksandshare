@@ -24,15 +24,23 @@ const featurePageData = {
     "Added logging to gunicorn for performace and debugging purposes",
     "Deployed Falcon server and Postgres database into production",
     "Figured out forwarding of url. so like stocksandshare.com goes to the website, instead of https://stocksandshare.com",
-    "Make population of charts and notes dynamic "
+    "Make population of charts and notes dynamic ",
+    "Created a fluid view for uploaded and viewing trades.charts",
+    "Added two traders [Steven, Cheten] for uploaded content",
+    "Moved trades to Trader section",
+    "Moved [Watchlist,Long,Short] into Upload section",
+    "Add in tab bar to see [watchlist, trades] from trader",
+    "Add in toggle button to switch between upload types [open trade, watchlist, close trade -> linked to a open trade]",
+    "Add in type of trade [long, short]",
+    "Create database for traders",
+    "Create alerts for uploading analysis"
   ],
   backlog: [
     "Made sections for charts [watchlist, current_trade, past_trades]",
     "Design local file structure for uploading chart data into the database",
     "Upload 5 charts and analysis",
     "Make design clickable. Click on stock name/symbol display the chart and notes. Will have dates assocaited with the chart and notes",
-    "Create alerts for uploading analysis",
-    "Create database for traders and users",
+    "Create database for users",
     "Create database for comments and notes",
     "Look into website caching to prevent from reloading data from API",
     "Add in authentication ",
@@ -50,7 +58,13 @@ const featurePageData = {
     "Add in mistakes section user Features",
     "Add in suggestions box website improvement",
     "Get logo for website",
-    "Integrate google analytics"
+    "Integrate google analytics",
+    "Add in type of trade [call, put]",
+    "Add in collapsable view for each watchlist/trade. Click would invoke a GET call and populate that view",
+    "Add colors to completed trades [Green,Red]",
+    "Add in articles for the main page",
+    "Add in content for the learning section (starting with options)",
+    "Add in Server Side Validation"
   ],
   phase_1:
     "Create MVP (minimal viable product), where traders can upload their stock anlysis and view them",

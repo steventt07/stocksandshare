@@ -10,8 +10,9 @@ import {
   Learn,
   Trader,
   Main,
-  Watchlist,
-  NotFound
+  Upload,
+  NotFound,
+  Exit
 } from "./Pages";
 
 ReactDOM.render(
@@ -22,7 +23,8 @@ ReactDOM.render(
       <Route exact path="/feature" component={Feature} />
       <Route exact path="/trader" component={Trader} />
       <Route exact path="/learn" component={Learn} />
-      <Route exact path="/watchlist" component={Watchlist} />
+      <Route exact path="/upload" component={Upload} />
+      <Route exact path="/exit/:trade_id/:symbol/:username" component={Exit} />
       <Route exact path="/404" component={NotFound} />
     </Switch>
   </Router>,
