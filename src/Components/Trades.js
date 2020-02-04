@@ -185,7 +185,7 @@ export const Trades = ({ charts }) => {
                     component={Link}
                     to={`/exit/${chart.trade_id}/${chart.symbol}/${chart.username}`}
                   >
-                    Exit
+                    Close
                   </Button>
                 </form>
                 <br />
