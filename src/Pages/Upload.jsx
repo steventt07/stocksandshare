@@ -6,7 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { Header, Footer } from "../Components/Layouts";
-import { ChartForm, WatchlistForm, TradeForm } from "../Components";
+import { WatchlistForm, TradeForm } from "../Components";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

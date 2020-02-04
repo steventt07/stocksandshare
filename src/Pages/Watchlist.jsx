@@ -54,8 +54,8 @@ export default function Watchlist() {
     setValue(newValue);
   };
 
-  // var proxy = "http://127.0.0.1:8000";
-  var proxy = "";
+  var proxy = "http://127.0.0.1:8000";
+  // var proxy = "";
   var getUser1 = "/charts?username=steventt07";
   var getUser2 = "/charts?username=cheten1234";
   const [chartsSteven, setStevenCharts] = useState([]);

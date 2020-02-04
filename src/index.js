@@ -24,7 +24,7 @@ ReactDOM.render(
       <Route exact path="/trader" component={Trader} />
       <Route exact path="/learn" component={Learn} />
       <Route exact path="/upload" component={Upload} />
-      <Route exact path="/exit/:trade_id/:symbol" component={Exit} />
+      <Route exact path="/exit/:trade_id/:symbol/:username" component={Exit} />
       <Route exact path="/404" component={NotFound} />
     </Switch>
   </Router>,

@@ -142,7 +142,8 @@ QUERY_GET_TRADE = """
         exit_trade.exit_price,
         exit_trade.date_created as exit_date_created,
         exit_trade.note as exit_note,
-        trade.trade_id
+        trade.trade_id,
+        trade.username
     FROM 
         trade
     INNER JOIN 

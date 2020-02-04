@@ -5,11 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { Link } from "../../node_modules/react-router-dom";
-//axios
+
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1)
@@ -17,13 +15,31 @@ const useStyles = makeStyles(theme => ({
 }));
 export const ExitForm = ({ params }) => {
   const [open, setOpen] = React.useState(false);
+  const [openInvalidUser, setOpenInvalidUser] = React.useState(false);
+  const [openInvalidForm, setOpenInvalidForm] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
+  const handleClickOpenInvalidUser = () => {
+    setOpenInvalidUser(true);
+  };
+
+  const handleClickOpenInvalidForm = () => {
+    setOpenInvalidForm(true);
+  };
+
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleCloseInvalidUser = () => {
+    setOpenInvalidUser(false);
+  };
+
+  const handleCloseInvalidForm = () => {
+    setOpenInvalidForm(false);
   };
 
   console.log(params);
@@ -32,13 +48,14 @@ export const ExitForm = ({ params }) => {
   var post_path = "/exit";
   const trade_id = params.trade_id;
   const symbol = params.symbol;
+  const username_check = params.username;
   const [image, setImage] = useState("");
   const [exit_price, setExitPrice] = useState("");
   const [note, setNote] = useState("");
-  //   placeholder values, will get values from props and file information
-  const [image_name, setImageName] = useState("AMD");
-  const [image_type, setImageType] = useState("PGN");
+  const [image_name, setImageName] = useState("");
+  const [image_type, setImageType] = useState("");
   const [username, setUsername] = useState("");
+
   const styles = { style: { textAlign: "center" } };
   const flexContainer = {
     display: "flex",
@@ -74,7 +91,7 @@ export const ExitForm = ({ params }) => {
         inputProps={styles}
         id="symbol-form"
         label="Symbol"
-        value={trade_id}
+        value={symbol}
         variant="outlined"
         fullWidth
       />
@@ -128,39 +145,43 @@ export const ExitForm = ({ params }) => {
           color="primary"
           onClick={async () => {
             if (validateFields()) {
-              console.log(
-                image,
-                exit_price,
-                note,
-                image_name,
-                image_type,
-                username,
-                trade_id,
-                symbol
-              );
-              const login = {
-                image,
-                exit_price,
-                note,
-                image_name,
-                image_type,
-                username,
-                trade_id,
-                symbol
-              };
-              const response = await fetch(proxy.concat(post_path), {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify(login)
-              });
+              if (username_check == username) {
+                console.log(
+                  image,
+                  exit_price,
+                  note,
+                  image_name,
+                  image_type,
+                  username,
+                  trade_id,
+                  symbol
+                );
+                const login = {
+                  image,
+                  exit_price,
+                  note,
+                  image_name,
+                  image_type,
+                  username,
+                  trade_id,
+                  symbol
+                };
+                const response = await fetch(proxy.concat(post_path), {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(login)
+                });
 
-              if (response.ok) {
-                handleClickOpen();
+                if (response.ok) {
+                  handleClickOpen();
+                }
+              } else {
+                handleClickOpenInvalidUser();
               }
             } else {
-              console.log("Invalid Form");
+              handleClickOpenInvalidForm();
             }
           }}
         >
@@ -183,6 +204,34 @@ export const ExitForm = ({ params }) => {
               to="/trader"
               autoFocus
             >
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={openInvalidUser}
+          onClose={handleCloseInvalidUser}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Invalid Username"}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseInvalidUser} color="primary" autoFocus>
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={openInvalidForm}
+          onClose={handleCloseInvalidForm}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Invalid Form"}</DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseInvalidForm} color="primary" autoFocus>
               Ok
             </Button>
           </DialogActions>

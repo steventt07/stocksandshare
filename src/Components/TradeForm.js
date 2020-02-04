@@ -3,6 +3,9 @@ import { Form } from "../../node_modules/semantic-ui-react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -27,6 +30,24 @@ export const TradeForm = ({ type }) => {
   //   placeholder values, will get values from props and file information
   const [image_name, setImageName] = useState("AMD");
   const [image_type, setImageType] = useState("PGN");
+  const [openInvalidUser, setOpenInvalidUser] = React.useState(false);
+  const [openInvalidForm, setOpenInvalidForm] = React.useState(false);
+
+  const handleClickOpenInvalidUser = () => {
+    setOpenInvalidUser(true);
+  };
+
+  const handleClickOpenInvalidForm = () => {
+    setOpenInvalidForm(true);
+  };
+
+  const handleCloseInvalidUser = () => {
+    setOpenInvalidUser(false);
+  };
+
+  const handleCloseInvalidForm = () => {
+    setOpenInvalidForm(false);
+  };
 
   const styles = { style: { textAlign: "center" } };
   const flexContainer = {
@@ -193,14 +214,44 @@ export const TradeForm = ({ type }) => {
                   setUsername("");
                   clearText();
                 }
+              } else {
+                handleClickOpenInvalidUser();
               }
             } else {
-              console.log("Invalid Form");
+              handleClickOpenInvalidForm();
             }
           }}
         >
           submit
         </Button>
+        <Dialog
+          open={openInvalidUser}
+          onClose={handleCloseInvalidUser}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Invalid Username"}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseInvalidUser} color="primary" autoFocus>
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={openInvalidForm}
+          onClose={handleCloseInvalidForm}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Invalid Form"}</DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseInvalidForm} color="primary" autoFocus>
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
       </form>
     </Form>
   );

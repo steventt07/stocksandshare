@@ -4,11 +4,9 @@ import { Form } from "../../node_modules/semantic-ui-react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "../../node_modules/react-router-dom";
-import { format } from "string-format";
 
 export const Trades = ({ charts }) => {
   const styles = { style: { textAlign: "center" } };
-  // const format = require("string-format");
   const flexContainer = {
     display: "flex",
     flexDirection: "row",
@@ -185,7 +183,7 @@ export const Trades = ({ charts }) => {
                     variant="contained"
                     color="primary"
                     component={Link}
-                    to={`/exit/${chart.trade_id}/${chart.symbol}`}
+                    to={`/exit/${chart.trade_id}/${chart.symbol}/${chart.username}`}
                   >
                     Exit
                   </Button>

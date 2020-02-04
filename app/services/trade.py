@@ -34,7 +34,8 @@ class TradeService:
                     'exit_price': record[9],
                     'exit_date_created': str(record[10]),
                     'exit_note': record[11],
-                    'trade_id': record[12]
+                    'trade_id': record[12],
+                    'username': record[13]
 
                 }
             )
