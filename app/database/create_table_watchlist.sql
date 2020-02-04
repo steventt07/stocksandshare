@@ -4,8 +4,7 @@ CREATE TABLE IF NOT EXISTS watchlist (
     image_id INTEGER REFERENCES image,
     symbol varchar(256),
     date_created DATE,
-    note TEXT,
-    chart_id INTEGER REFERENCES chart
+    note TEXT
 );
 
 CREATE INDEX idx_watchlist_id_1 ON watchlist(watchlist_id);

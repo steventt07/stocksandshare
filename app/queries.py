@@ -124,7 +124,8 @@ QUERY_GET_WATCHLIST = """
     INNER JOIN 
         image on image.image_id = watchlist.image_id
     WHERE 
-        watchlist.username = %s;
+        watchlist.username = %s
+    ORDER BY watchlist.date_created DESC;
 
 """
 
@@ -155,7 +156,8 @@ QUERY_GET_TRADE = """
     LEFT JOIN 
         image as image_1 on image_1.image_id = exit_trade.image_id
     WHERE 
-        trade.username = %s;
+        trade.username = %s
+    ORDER BY entry_trade.date_created DESC;
 
 """
 

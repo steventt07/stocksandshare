@@ -5,8 +5,7 @@ CREATE TABLE IF NOT EXISTS image (
     image_bytes bytea,
     symbol varchar(256),
     username varchar(256) REFERENCES trader,
-    date_created DATE,
-    chart_id INTEGER REFERENCES chart
+    date_created DATE
 );
 
 CREATE INDEX idx_image_id_1 ON image(image_id);

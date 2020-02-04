@@ -32,6 +32,7 @@ export const TradeForm = ({ type }) => {
   const [image_type, setImageType] = useState("PGN");
   const [openInvalidUser, setOpenInvalidUser] = React.useState(false);
   const [openInvalidForm, setOpenInvalidForm] = React.useState(false);
+  const [openSuccess, setSuccess] = React.useState(false);
 
   const handleClickOpenInvalidUser = () => {
     setOpenInvalidUser(true);
@@ -41,12 +42,20 @@ export const TradeForm = ({ type }) => {
     setOpenInvalidForm(true);
   };
 
+  const handleClickOpenSuccess = () => {
+    setSuccess(true);
+  };
+
   const handleCloseInvalidUser = () => {
     setOpenInvalidUser(false);
   };
 
   const handleCloseInvalidForm = () => {
     setOpenInvalidForm(false);
+  };
+
+  const handleCloseSuccess = () => {
+    setSuccess(false);
   };
 
   const styles = { style: { textAlign: "center" } };
@@ -170,7 +179,6 @@ export const TradeForm = ({ type }) => {
           onClick={async () => {
             if (validateFields()) {
               if (username == user1 || username == user2) {
-                console.log("invald user");
                 console.log(
                   image,
                   note,
@@ -204,7 +212,7 @@ export const TradeForm = ({ type }) => {
                 });
 
                 if (response.ok) {
-                  console.log("response worked!!");
+                  handleClickOpenSuccess();
                   setNote("");
                   setSymbol("");
                   setImage("");
@@ -248,6 +256,21 @@ export const TradeForm = ({ type }) => {
           <DialogTitle id="alert-dialog-title">{"Invalid Form"}</DialogTitle>
           <DialogActions>
             <Button onClick={handleCloseInvalidForm} color="primary" autoFocus>
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={openSuccess}
+          onClose={handleCloseSuccess}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Success! Your tade was uploaded"}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseSuccess} color="primary" autoFocus>
               Ok
             </Button>
           </DialogActions>

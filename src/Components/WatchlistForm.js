@@ -27,6 +27,7 @@ export const WatchlistForm = () => {
   const [image_type, setImageType] = useState("");
   const [openInvalidUser, setOpenInvalidUser] = React.useState(false);
   const [openInvalidForm, setOpenInvalidForm] = React.useState(false);
+  const [openSuccess, setSuccess] = React.useState(false);
 
   const handleClickOpenInvalidUser = () => {
     setOpenInvalidUser(true);
@@ -36,12 +37,20 @@ export const WatchlistForm = () => {
     setOpenInvalidForm(true);
   };
 
+  const handleClickOpenSuccess = () => {
+    setSuccess(true);
+  };
+
   const handleCloseInvalidUser = () => {
     setOpenInvalidUser(false);
   };
 
   const handleCloseInvalidForm = () => {
     setOpenInvalidForm(false);
+  };
+
+  const handleCloseSuccess = () => {
+    setSuccess(false);
   };
 
   const styles = { style: { textAlign: "center" } };
@@ -153,7 +162,7 @@ export const WatchlistForm = () => {
                 });
 
                 if (response.ok) {
-                  console.log("response worked!!");
+                  handleClickOpenSuccess();
                   setNote("");
                   setSymbol("");
                   setImage("");
@@ -194,6 +203,21 @@ export const WatchlistForm = () => {
           <DialogTitle id="alert-dialog-title">{"Invalid Form"}</DialogTitle>
           <DialogActions>
             <Button onClick={handleCloseInvalidForm} color="primary" autoFocus>
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={openSuccess}
+          onClose={handleCloseSuccess}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Success! Your watchlist was uploaded"}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseSuccess} color="primary" autoFocus>
               Ok
             </Button>
           </DialogActions>
