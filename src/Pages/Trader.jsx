@@ -6,10 +6,18 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { Header, Footer } from "../Components/Layouts";
-import { Charts, Trades, Watchlist } from "../Components";
+import { Trades, Watchlist } from "../Components";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+  button: {
+    backgroundColor: "purple",
+    color: "white"
+  }
+});
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -34,6 +42,26 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired
 };
 
+const StyledMenu = withStyles({
+  paper: {
+    border: "1px solid #d3d4d5"
+  }
+})(props => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "center"
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "center"
+    }}
+    {...props}
+  />
+));
+
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -53,12 +81,16 @@ export default function Trader() {
   var proxy = "";
   var getTrade1 = "/trade?username=steventt07";
   var getTrade2 = "/trade?username=cheten1234";
+  var getTrade3 = "/trade?username=blake1234";
   var getWatchlist1 = "/watchlist?username=steventt07";
   var getWatchlist2 = "/watchlist?username=cheten1234";
+  var getWatchlist3 = "/watchlist?username=blake1234";
   const [chartsSteven, setStevenCharts] = useState([]);
   const [chartsCheten, setChetenCharts] = useState([]);
   const [watchlistSteven, setStevenWatchlist] = useState([]);
   const [watchlistCheten, setChetenWatchlist] = useState([]);
+  const [chartsBlake, setBlakeCharts] = useState([]);
+  const [watchlistBlake, setBlakeWatchlist] = useState([]);
   const [currentChart, setCurrentChart] = useState([]);
   const [currentWatchlist, setCurrentWatchlist] = useState([]);
 
@@ -78,6 +110,13 @@ export default function Trader() {
     );
   }, []);
   useEffect(() => {
+    fetch(proxy.concat(getTrade3)).then(response =>
+      response.json().then(data => {
+        setBlakeCharts(data.trade);
+      })
+    );
+  }, []);
+  useEffect(() => {
     fetch(proxy.concat(getWatchlist1)).then(response =>
       response.json().then(data => {
         setStevenWatchlist(data.watchlist);
@@ -89,6 +128,13 @@ export default function Trader() {
     fetch(proxy.concat(getWatchlist2)).then(response =>
       response.json().then(data => {
         setChetenWatchlist(data.watchlist);
+      })
+    );
+  }, []);
+  useEffect(() => {
+    fetch(proxy.concat(getWatchlist3)).then(response =>
+      response.json().then(data => {
+        setBlakeWatchlist(data.watchlist);
       })
     );
   }, []);
@@ -117,6 +163,13 @@ export default function Trader() {
     setCurrentWatchlist(watchlistCheten);
   };
 
+  const handleCloseMenuBlake = () => {
+    setAnchorEl(null);
+    setTrader("Blake");
+    setCurrentChart(chartsBlake);
+    setCurrentWatchlist(watchlistBlake);
+  };
+
   return (
     <div className="container">
       <Header />
@@ -124,6 +177,7 @@ export default function Trader() {
         <h2>Traders</h2>
         <h3>Steven Tran - Technical Analysis</h3>
         <h3>Cheten - News/Momentum</h3>
+        <h3>Blake Jones</h3>
         <Button
           aria-controls="simple-menu"
           aria-haspopup="true"
@@ -132,18 +186,19 @@ export default function Trader() {
           {trader}
         </Button>
         <br />
-        <Menu
+        <StyledMenu
           id="simple-menu"
           anchorEl={anchorEl}
           keepMounted
           variant="contained"
-          color="primary"
+          color="#2196f3"
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
           <MenuItem onClick={handleCloseMenuSteven}>Steven Tran</MenuItem>
           <MenuItem onClick={handleCloseMenuCheten}>Cheten</MenuItem>
-        </Menu>
+          <MenuItem onClick={handleCloseMenuBlake}>Blake Jones</MenuItem>
+        </StyledMenu>
         <AppBar position="static" color="default">
           <Tabs
             value={value}

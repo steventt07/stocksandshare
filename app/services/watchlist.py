@@ -14,10 +14,7 @@ class WatchlistService:
     def on_get(self, req, resp):
         print('HTTP GET: /watchlist')
         cursor = self.service.dbconnection.connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        if req.params['username'] == "steventt07":
-            cursor.execute(QUERY_GET_WATCHLIST, ("steventt07", ))
-        else:
-            cursor.execute(QUERY_GET_WATCHLIST, ("cheten1234", ))
+        cursor.execute(QUERY_GET_WATCHLIST, (req.params['username'], ))
         response = []
         for record in cursor:
             response.append(

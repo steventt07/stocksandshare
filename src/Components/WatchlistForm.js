@@ -18,6 +18,7 @@ export const WatchlistForm = () => {
   var post_path = "/watchlist";
   var user1 = "steventt07";
   var user2 = "cheten1234";
+  var user3 = "blake1234";
 
   const [image, setImage] = useState("");
   const [note, setNote] = useState("");
@@ -135,7 +136,7 @@ export const WatchlistForm = () => {
           color="primary"
           onClick={async () => {
             if (validateFields()) {
-              if (username == user1 || username == user2) {
+              if (username == user1 || username == user2 || username == user3) {
                 console.log("invald user");
                 console.log(
                   image,

@@ -18,6 +18,7 @@ export const TradeForm = ({ type }) => {
   var post_path = "/trade";
   var user1 = "steventt07";
   var user2 = "cheten1234";
+  var user3 = "blake1234";
   const trade_type = type[3];
 
   const [image, setImage] = useState("");
@@ -178,7 +179,7 @@ export const TradeForm = ({ type }) => {
           color="primary"
           onClick={async () => {
             if (validateFields()) {
-              if (username == user1 || username == user2) {
+              if (username == user1 || username == user2 || username == user3) {
                 console.log(
                   image,
                   note,
